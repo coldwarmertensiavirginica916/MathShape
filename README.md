@@ -2,6 +2,8 @@
 
 `MathShape` is a SwiftUI library that re-implements the mathematical curve loaders from [Math Curve Loaders](https://paidax01.github.io/math-curve-loaders/) as `Shape` types.
 
+![](Resources/builtin-shapes.png)
+
 ## Features
 
 - Pure SwiftUI `Shape` implementations.
@@ -10,9 +12,8 @@
 - Built-in mathematical curves that work well for loading indicators, decorative motion, and generative UI.
 - Customizable shape parameters for several curves.
 
-## Requirements
+## Supported Platforms
 
-- Swift 6.0
 - iOS 17+
 - macOS 14+
 - watchOS 10+
@@ -59,10 +60,10 @@ struct LoaderView: View {
     @State private var progress = 0.0
 
     var body: some View {
-        Shape.butterflyPhase
+        ButterflyPhaseShape()
             .stroke(.gray.opacity(0.2), lineWidth: 6)
             .overlay {
-                Shape.butterflyPhase
+                ButterflyPhaseShape()
                     .trim(from: 0, to: progress)
                     .stroke(.red, style: StrokeStyle(lineWidth: 6, lineCap: .round))
             }
@@ -76,13 +77,7 @@ struct LoaderView: View {
 }
 ```
 
-You can also instantiate parameterized shapes directly:
-
-```swift
-RoseCurveShape(k: 5)
-    .stroke(.pink, lineWidth: 4)
-    .frame(width: 160, height: 160)
-```
+![](Resources/animation.gif)
 
 ### Custom Parametric Shape
 

